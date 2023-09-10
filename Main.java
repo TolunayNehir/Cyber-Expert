@@ -30,14 +30,17 @@ public class Main {
 		if(concpoint==0) {
 			System.out.println("Your riskpoint is 0 no risk :)");
 		}
-		else if(concpoint>=2) {
-			System.out.println("Your riskpoint is 2 medium be careful");
+		else if(concpoint==1) {
+			System.out.println("Your riskpoint is 1 (low) don't worry ");
 		}
-		else if(concpoint>=3) {
-			System.out.println("Your riskpoint is 3 check the antivirus program and scan your computer");
+		else if(concpoint==2) {
+			System.out.println("Your riskpoint is 2 (medium) be careful");
 		}
-		else if(concpoint>=4) {
-			System.out.println("Your riskpoint 4 or highter this is bad :( ");
+		else if(concpoint==3) {
+			System.out.println("Your riskpoint is 3 (high) check the antivirus program and scan your computer");
+		}
+		else if(concpoint==4) {
+			System.out.println("Your riskpoint 4 this is bad :( ");
 		}
 		a++;
 		try {
@@ -79,13 +82,21 @@ public class Main {
          Process process;
          String log="netlog.txt";
          String line;
+         ArrayList<String> connections = new ArrayList<>();
 		try {
 			process = processBuilder.start();  
 			BufferedReader reader= new BufferedReader(new InputStreamReader(process.getInputStream()));
 			FileWriter fw=new FileWriter(log);
 			while ((line = reader.readLine()) != null) {
 			     fw.append(line);
+			     if(line.contains("127.0.0.1")==true || line.contains("0.0.0.0")==true || line.contains("445")==true) {
+			    	 connections.add(line);
+			     }
 			 }
+			System.out.println("Suspicius Connections List:");
+			for(String element : connections) {
+				System.out.println(element);
+			}
 			
 		} catch (IOException e1) {
 			e1.printStackTrace();
