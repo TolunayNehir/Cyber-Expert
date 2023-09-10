@@ -127,14 +127,20 @@ public class Main {
 			e.printStackTrace();
 		}
         int point=0;
-        String[] suspicius= {};
-        for(int i=1;i<readedprocesses.size();i++) {
-        	if(tookedprocesses.get(i)==readedprocesses.get(i)) {
-        		suspicius[i--];
+        ArrayList<String> suspicius = new ArrayList<String>();
+        for(int i=1;i<=readedprocesses.size();i++) {
+        	String tookedprocess=tookedprocesses.get(i);
+        	if(tookedprocess==readedprocesses.get(i)) {
+        		suspicius.add(tookedprocess);
         		point++;
         	}
         }
-        System.out.println("Process count is: "+point);
+        System.out.println("Suspicius Processes List:");
+        for(int i=1;i<=suspicius.size();i++) {
+        	System.out.println(i+" "+suspicius.get(i));
+        }
+        
+        System.out.println("Suspicius Process count is: "+point);
         if(point<=2 || point>0) {
         	return 1;
         }
