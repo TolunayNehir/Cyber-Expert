@@ -83,6 +83,7 @@ public class Main {
          String log="netlog.txt";
          String line;
          ArrayList<String> connections = new ArrayList<>();
+         int i=0;
 		try {
 			process = processBuilder.start();  
 			BufferedReader reader= new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -96,11 +97,13 @@ public class Main {
 			System.out.println("Suspicius Connections List:");
 			for(String element : connections) {
 				System.out.println(element);
+				i++;
 			}
 			
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		System.out.println("Suspicius Connections count is: "+i);
 		System.out.println("Network log saved to netlog.txt will not be evaluated");
 		
 	}
